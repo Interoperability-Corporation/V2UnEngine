@@ -58,8 +58,8 @@ namespace V2UnEngine
             //=== Here endth the command script load/validate section   [CommandValidator.cs]
             //=== Now we process the files against the commands         [CommandProcessor.cs]
 
-            Msg.OnMessageLoaded += Pro.TransformLoadedMessage;  // subscribe to event
-
+            // Subscribe to event to handle loaded message
+            Msg.OnMessageLoaded += Pro.TransformLoadedMessage;
 
             // Get flag for how to handle files beginning with '.'
             // Get file extensions to process
