@@ -8,6 +8,7 @@ using IOC.CDS.UnEngine;
 
 namespace V2UnEngine
 {
+    // Class to enable transform of HL7 messages
     internal class V2UnEngine
     {
         static void Main(string[] args)
