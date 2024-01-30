@@ -17,8 +17,6 @@ namespace V2UnEngine
             var Cmd = new CommandValidator();       // Instantiate 'fix' command processor class
             var Pro = new CommandProcessor();       // Instantiate 'process' command processor class
 
-            Msg.OnMessageLoaded += Pro.TransformLoadedMessage;  // subscribe to event
-
             List<string> AllowedCommands = new List<string>
             {
                 "DOT",      // Process dot files switch
@@ -50,19 +48,25 @@ namespace V2UnEngine
             Console.WriteLine($" ");
             Console.WriteLine($"Loading Script File: {CfgFile}");
 
-            int ErrorCode = Cmd.LoadConfigScript(CfgFile);          // Open config file, or throw exception
+            int ErrorCode = Cmd.LoadConfigScript(CfgFile);      // Open/Load config file, or throw exception
             if (ErrorCode == -1)
             {
                 Console.ReadLine();
                 Environment.Exit(0);
             }
+            //
+            //=== Here endth the command script load/validate section   [CommandValidator.cs]
+            //=== Now we process the files against the commands         [CommandProcessor.cs]
+
+            Msg.OnMessageLoaded += Pro.TransformLoadedMessage;  // subscribe to event
+
 
             // Get flag for how to handle files beginning with '.'
             // Get file extensions to process
-            bool ProcessDotFiles = Cmd.ProcessDotFiles();
-            string[] MsgFileExtensions = Cmd.GetFileExtensions();
-            Cmd.FileFoldersToProcess();
-            string CurrentPath = Cmd.FullPathToFilesToProcess;
+            bool ProcessDotFiles = Pro.ProcessDotFiles();
+            string[] MsgFileExtensions = Pro.GetFileExtensions();
+            Pro.FileFoldersToProcess();
+            string CurrentPath = Pro.FullPathToFilesToProcess;
 
             //  Announce progress to user
             Console.WriteLine($" ");
