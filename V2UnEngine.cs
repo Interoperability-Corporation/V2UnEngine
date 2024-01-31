@@ -38,7 +38,7 @@ namespace V2UnEngine
                 "TOLOWER",  // Convert to lowercase
                 "TOUPPER",  // Convert to uppercase
                 "RMVTEXT",  // Get rid of strings (via translation)
-                "XLATE",    // Table-based translation
+                "XLATE"     // Table-based translation
             };
             Cmd.LoadAllowedCommands(AllowedCommands);
 
@@ -68,6 +68,7 @@ namespace V2UnEngine
             string[] MsgFileExtensions = Pro.GetFileExtensions();
             Pro.FileFoldersToProcess();
             string CurrentPath = Pro.FullPathToFilesToProcess;
+            Pro.LoadXlateValues();
 
             //  Announce progress to user
             Console.WriteLine($" ");
